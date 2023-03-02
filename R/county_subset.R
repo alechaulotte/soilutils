@@ -20,13 +20,13 @@ county_subset <- function(pedons) {
     filter(areatypename == "County or Parish")
 
   spl <- split(xsao, xsao$areasymbol)
-  sink(file = "a")
 
   spl_name<- as.vector(NULL)
+
   for(i in 1:length(spl)) {
   spl_name <- rbind(spl_name, dput(as.character(unique(spl[[i]]$areasymbol))))
   }
-
+  sink(file = "a")
   df_list <- dput(as.character(unique(xsao$areasymbol)))
   sink(NULL)
 
@@ -34,6 +34,7 @@ county_subset <- function(pedons) {
   for(i in 1:length(spl_name)) {
     pedons <- pedons
     assign(spl_name[i], subset(pedons, pedons$siteiid %in% spl[[i]]$siteiid))
+    return(spl_name[i])
   }
 
 
