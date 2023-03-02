@@ -19,14 +19,14 @@ county_subset <- function(pedons) {
   xsao <- as.data.frame(xe$siteaoverlap) %>%
     filter(areatypename == "County or Parish")
 
-  sink(file = "a")
   spl <- split(xsao, xsao$areasymbol)
+  sink(file = "a")
   spl_name <- dput(as.character(unique(xsao$areasymbol)))
   df_list <- dput(as.character(unique(xsao$areasymbol)))
   sink(NULL)
 
 
-  for(i in seq_along(df_list)) {
+  for(i in 1:length(spl_name)) {
     pedons <- pedons
     assign(spl_name[i], subset(pedons, pedons$siteiid %in% spl[[i]]$siteiid))
   }
