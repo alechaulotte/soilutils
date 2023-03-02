@@ -2,20 +2,22 @@
 #'
 #' @name contrast_tex
 #'
-#' @param pedons Soil Profile Collection (pedons) for analysis
+#' @param pedons Soil Profile Collection (pedons) of interest
 #' @param tex1 surface texture classes
 #' @param tex2 subsurface texture classes
-#' @param depth minimum depth to assess subsurface (cm)
+#' @param tex1name name to assign surface textural classes
+#' @param tex2name name to assign subsurface textural classes
 #' @examples
 #' pedons <- fetchNASIS(from = "pedons")
 #' tex1 <- c("lvfs", "lfs", "ls", "lcos", "vfs", "fs", "s", "cos")
 #' tex2 <- c("fsl", "vfsl", "l", "sil", "si", "scl", "cl", "sicl", "sc", "sic", "c")
-#' depth <- 25
+#' tex1name <- "coarse"
+#' tex2name <- "loamy"
 #' contrast_tex(pedons, tex1, tex2, depth)
 #' @return df of outputs
 #' @export
 
-contrast_tex <- function(pedons, tex1, tex2, depth) {
+contrast_tex <- function(pedons, tex1, tex2, tex1name = "tex1", tex2name = "tex2") {
 
   require(aqp)
   require(soilDB)
@@ -40,9 +42,9 @@ contrast_tex <- function(pedons, tex1, tex2, depth) {
 
   for(i in df_list) {
     if(!(get(as.character(i))[1,]$texcl %in% tex1) & !(get(as.character(i))[1,]$texcl %in% tex2)) {
-      out_list <- rbind(out_list, ("surface texture not in tex1 or tex2")) }
+      out_list <- rbind(out_list, paste("surface texture not in", tex1name, "or", tex2name, sep = " ")) }
     else if (get(as.character(i))[1,]$texcl %in% tex2) {
-      out_list <- rbind(out_list, ("tex2 at surface")) }
+      out_list <- rbind(out_list, paste(tex2name, "at surface", sep = " ")) }
     else if (get(as.character(i))[1,]$texcl %in% tex1) {
       if(nrow(get(as.character(i))) >= 2) {
         if(get(as.character(i))[2,]$texcl %in% tex1) {
@@ -62,104 +64,104 @@ contrast_tex <- function(pedons, tex1, tex2, depth) {
                                     if(get(as.character(i))[9,]$texcl %in% tex1) {
                                       if(nrow(get(as.character(i))) >= 10) {
                                         if(get(as.character(i))[10,]$texcl %in% tex1) {
-                                          out_list <- rbind(out_list, ("tex1 through h10"))
+                                          out_list <- rbind(out_list, paste(tex1name, "through h10", sep = " "))
                                         }
                                         else if (get(as.character(i))[10,]$texcl %in% tex2) {
-                                          out_list<- rbind(out_list, ("tex1 -> tex2 at h10"))
+                                          out_list<- rbind(out_list, paste(tex1name, "->", tex2name, "at h10", sep = " "))
                                         }
                                         else {
-                                          out_list <- rbind(out_list, ("other tex at h10"))
+                                          out_list <- rbind(out_list, ("other texture at h10"))
                                         }}
                                       else {
-                                        out_list <- rbind(out_list, ("tex1 throughout"))
+                                        out_list <- rbind(out_list, paste(tex1name, "throughout", sep = " "))
                                       }
                                     }
                                     else if (get(as.character(i))[9,]$texcl %in% tex2) {
-                                      out_list <- rbind(out_list, ("tex1 -> tex2 at h9"))
+                                      out_list <- rbind(out_list, paste(tex1name, "->", tex2name, "at h9", sep = " "))
                                     }
                                     else {
-                                      out_list <- rbind(out_list, ("other tex at h9"))
+                                      out_list <- rbind(out_list, ("other texture at h9"))
                                     }
                                   }
                                   else {
-                                    out_list <- rbind(out_list, ("tex1 throughout"))
+                                    out_list <- rbind(out_list, paste(tex1name, "throughout", sep = " "))
                                   }
                                 }
                                 else if (get(as.character(i))[8,]$texcl %in% tex2) {
-                                  out_list <- rbind(out_list, ("tex1 -> tex2 at h8"))
+                                  out_list <- rbind(out_list, paste(tex1name, "->", tex2name, "at h8", sep = " "))
                                 }
                                 else {
-                                  out_list <- rbind(out_list, ("other tex at h8"))
+                                  out_list <- rbind(out_list, ("other texture at h8"))
                                 }
                               }
                               else {
-                                out_list <- rbind(out_list, ("tex1 throughout"))
+                                out_list <- rbind(out_list, paste(tex1name, "throughout", sep = " "))
                               }
                             }
                             else if (get(as.character(i))[7,]$texcl %in% tex2) {
-                              out_list <- rbind(out_list, ("tex1 -> tex2 at h7"))
+                              out_list <- rbind(out_list, paste(tex1name, "->", tex2name, "at h7", sep = " "))
                             }
                             else {
-                              out_list <- rbind(out_list, ("other tex at h7"))
+                              out_list <- rbind(out_list, ("other texture at h7"))
                             }
                           }
                           else {
-                            out_list <- rbind(out_list, ("tex1 throughout"))
+                            out_list <- rbind(out_list, paste(tex1name, "throughout", sep = " "))
                           }
                         }
                         else if (get(as.character(i))[6,]$texcl %in% tex2) {
-                          out_list <- rbind(out_list, ("tex1 -> tex2 at h6"))
+                          out_list <- rbind(out_list, paste(tex1name, "->", tex2name, "at h6", sep = " "))
                         }
                         else {
-                          out_list <- rbind(out_list, ("other tex at h6"))
+                          out_list <- rbind(out_list, ("other texture at h6"))
                         }
                       }
                       else {
-                        out_list <- rbind(out_list, ("tex1 throuhgout"))
+                        out_list <- rbind(out_list, paste(tex1name, "throuhgout", sep = " "))
                       }
                     }
                     else if (get(as.character(i))[5,]$texcl %in% tex2) {
-                      out_list <- rbind(out_list, ("tex1 -> tex2 at h5"))
+                      out_list <- rbind(out_list, paste(tex1name, "->", tex2name, "at h5", sep = " "))
                     }
                     else {
-                      out_list <- rbind(out_list, ("other tex at h5"))
+                      out_list <- rbind(out_list, ("other texture at h5"))
                     }
                   }
                   else {
-                    out_list <- rbind(out_list, ("tex1 throughout"))
+                    out_list <- rbind(out_list, paste(tex1name, "throughout", sep = " "))
                   }
                 }
                 else if (get(as.character(i))[4,]$texcl %in% tex2) {
-                  out_list <- rbind(out_list, ("tex1 -> tex2 at h4"))
+                  out_list <- rbind(out_list, paste(tex1name, "->", tex2name, "at h4", sep = " "))
                 }
                 else {
-                  out_list <- rbind(out_list, ("other tex at h4"))
+                  out_list <- rbind(out_list, ("other texture at h4"))
                 }
               }
               else {
-                out_list <- rbind(out_list, ("tex1 throughout"))
+                out_list <- rbind(out_list, paste(tex1name, "throughout", sep = " "))
               }
             }
             else if (get(as.character(i))[3,]$texcl %in% tex2) {
-              out_list <- rbind(out_list, ("tex1 -> tex2 at h3"))
+              out_list <- rbind(out_list, paste(tex1name, "->", tex2name, "at h3", sep = " "))
             }
             else {
-              out_list <- rbind(out_list, ("other tex at h3"))
+              out_list <- rbind(out_list, ("other texture at h3"))
             }
           }
           else {
-            out_list <- rbind(out_list, ("tex1 throughout"))
+            out_list <- rbind(out_list, paste(tex1name, "throughout", sep = " "))
           }
         }
         else if (get(as.character(i))[2,]$texcl %in% tex2) {
-          out_list <- rbind(out_list, ("tex1 -> tex2 at h2"))
+          out_list <- rbind(out_list, paste(tex1name, "->", tex2name, "at h2", sep = " "))
         }
         else {
-          out_list <- rbind(out_list, ("other tex at h2"))
+          out_list <- rbind(out_list, ("other texture at h2"))
         }
       }
       else {
-        out_list <- rbind(out_list, ("tex1 throughout"))
+        out_list <- rbind(out_list, paste(tex1name, "throughout", sep = " "))
       }
     }
   }
