@@ -28,7 +28,7 @@ county_subset <- function(pedons) {
   }
 
   for(i in 1:length(spl)) {
-    assign(spl_name[i], subset(pedons, siteiid %in% get(df_list[i])$siteiid))
+    assign(spl_name[i], subset(pedons, pedons@site$siteiid %in% get(df_list[i])$siteiid))
   }
 
 
