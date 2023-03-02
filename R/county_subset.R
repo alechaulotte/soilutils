@@ -23,9 +23,14 @@ county_subset <- function(pedons) {
 
   spl_name<- as.vector(NULL)
 
+  print("warning: following objects will be created in global environment:")
   for(i in 1:length(spl)) {
-  spl_name <- rbind(spl_name, dput(as.character(unique(spl[[i]]$areasymbol))))
+    spl_name <- rbind(spl_name, dput(as.character(unique(spl[[i]]$areasymbol))))
   }
+
+  yn <- readline("proceed? (y/n) ")
+
+  if(yn == "y") {
 
   sink(file = "a")
   df_list <- dput(as.character(unique(xsao$areasymbol)))
@@ -36,6 +41,8 @@ county_subset <- function(pedons) {
     assign(spl_name[i], subset(pedons, pedons$siteiid %in% spl[[i]]$siteiid), envir = .GlobalEnv)
   }
 
+  }
+  else(){return(NULL)}
 
 }
 
