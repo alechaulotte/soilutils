@@ -3,7 +3,7 @@ Title: Some utilities for soils analysis
 Version: 0.1
 Authors@R:
   person("Alec", "Haulotte", , "alec@alechaulotte.com", role = c("aut", "cre"))
-Description: I'll write this later once I figure out what I'm doing
+Description: 
 License: use_unlicense()
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
