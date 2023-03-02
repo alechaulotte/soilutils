@@ -33,11 +33,10 @@ county_subset <- function(pedons) {
 
   county_list <- as.list(NULL)
   for(i in 1:length(spl_name)) {
-    pedons <- pedons
     county_list[[i]] <- assign(spl_name[i], subset(pedons, pedons$siteiid %in% spl[[i]]$siteiid))
-    return(county_list)
   }
 
+  return(county_list)
 
 }
 
