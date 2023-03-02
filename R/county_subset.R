@@ -21,7 +21,12 @@ county_subset <- function(pedons) {
 
   spl <- split(xsao, xsao$areasymbol)
   sink(file = "a")
-  spl_name <- dput(as.character(unique(xsao$areasymbol)))
+
+  spl_name<- as.vector(NULL)
+  for(i in 1:length(spl)) {
+  spl_name <- rbind(spl_name, dput(as.character(unique(spl[[i]]$areasymbol))))
+  }
+
   df_list <- dput(as.character(unique(xsao$areasymbol)))
   sink(NULL)
 
