@@ -26,15 +26,16 @@ county_subset <- function(pedons) {
   for(i in 1:length(spl)) {
   spl_name <- rbind(spl_name, dput(as.character(unique(spl[[i]]$areasymbol))))
   }
+
   sink(file = "a")
   df_list <- dput(as.character(unique(xsao$areasymbol)))
   sink(NULL)
 
-
+  county_list <- as.list(NULL)
   for(i in 1:length(spl_name)) {
     pedons <- pedons
-    assign(spl_name[i], subset(pedons, pedons$siteiid %in% spl[[i]]$siteiid))
-    return(get(spl_name[i]))
+    county_list[[i]] <- assign(spl_name[i], subset(pedons, pedons$siteiid %in% spl[[i]]$siteiid))
+    return(county_list)
   }
 
 
