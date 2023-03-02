@@ -4,16 +4,18 @@
 \alias{contrast_tex}
 \title{Check for Contrasting Surface/Subsurface Textures}
 \usage{
-contrast_tex(pedons, tex1, tex2, depth)
+contrast_tex(pedons, tex1, tex2, tex1name = "tex1", tex2name = "tex2")
 }
 \arguments{
-\item{pedons}{Soil Profile Collection (pedons) for analysis}
+\item{pedons}{Soil Profile Collection (pedons) of interest}
 
 \item{tex1}{surface texture classes}
 
 \item{tex2}{subsurface texture classes}
 
-\item{depth}{minimum depth to assess subsurface (cm)}
+\item{tex1name}{name to assign surface textural classes}
+
+\item{tex2name}{name to assign subsurface textural classes}
 }
 \value{
 df of outputs
@@ -25,6 +27,7 @@ Check for Contrasting Surface/Subsurface Textures
 pedons <- fetchNASIS(from = "pedons")
 tex1 <- c("lvfs", "lfs", "ls", "lcos", "vfs", "fs", "s", "cos")
 tex2 <- c("fsl", "vfsl", "l", "sil", "si", "scl", "cl", "sicl", "sc", "sic", "c")
-depth <- 25
-contrast_tex(pedons, tex1, tex2, depth)
+tex1name <- "coarse"
+tex2name <- "loamy"
+contrast_tex(pedons, tex1, tex2, tex1name, tex2name)
 }

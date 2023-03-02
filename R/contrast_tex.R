@@ -13,7 +13,7 @@
 #' tex2 <- c("fsl", "vfsl", "l", "sil", "si", "scl", "cl", "sicl", "sc", "sic", "c")
 #' tex1name <- "coarse"
 #' tex2name <- "loamy"
-#' contrast_tex(pedons, tex1, tex2, depth)
+#' contrast_tex(pedons, tex1, tex2, tex1name, tex2name)
 #' @return df of outputs
 #' @export
 
