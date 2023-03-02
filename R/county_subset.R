@@ -42,7 +42,7 @@ county_subset <- function(pedons) {
   }
 
   }
-  else(){return(NULL)}
+  else {return(NULL)}
 
 }
 
