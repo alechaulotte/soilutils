@@ -24,12 +24,11 @@ county_subset <- function(pedons) {
   df_list <- dput(as.character(unique(xsao$areasymbol)))
 
   for(i in 1:length(spl)) {
-    assign(spl_name[i], spl[[i]])
+      assign(spl_name[i], spl[[i]])
   }
 
   for(i in 1:length(spl)) {
     assign(spl_name[i], subset(pedons, siteiid %in% get(df_list[i])$siteiid))
-    return(spl_name[i])
   }
 
 
