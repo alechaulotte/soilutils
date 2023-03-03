@@ -44,7 +44,7 @@ for(i in seq_along(df_list)) {
   clayplots[[i]] <-
   p1 <- get(as.character(df_list)[i]) %>% ggplot(aes(x = hzdept, y = clay)) +
     scale_y_continuous(limits = c(claymin, claymax)) + scale_x_continuous(limits = c(200,0), trans = "reverse") +
-    geom_point(aes(col = site_id)) + geom_line(aes(col = site_id)) + coord_flip() + theme_minimal()
+    geom_point(aes(col = site_id)) + geom_line(aes(col = site_id)) + coord_flip() + theme_light()
   print(p1)
 
 }
