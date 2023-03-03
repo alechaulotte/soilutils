@@ -10,7 +10,7 @@ county_subset(pedons)
 \item{pedons}{Soil Profile Collection (pedons) for analysis}
 }
 \value{
-Soil Profile Collection objects (one for each county)
+Soil Profile Collection objects in global environment (one for each county)
 }
 \description{
 Subset pedons by county symbol

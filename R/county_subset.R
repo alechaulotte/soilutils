@@ -3,7 +3,7 @@
 #' @name county_subset
 #'
 #' @param pedons Soil Profile Collection (pedons) for analysis
-#' @return Soil Profile Collection objects (one for each county)
+#' @return Soil Profile Collection objects in global environment (one for each county)
 #' @export
 
 county_subset <- function(pedons) {
