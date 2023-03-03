@@ -4,10 +4,14 @@
 \alias{plot_clay}
 \title{Plot clay percentage by depth for group of pedons}
 \usage{
-plot_clay(pedons)
+plot_clay(pedons, claymin = 0, claymax = 100)
 }
 \arguments{
 \item{pedons}{Soil Profile Collection (pedons) for analysis}
+
+\item{claymin}{clay axis minimum}
+
+\item{claymax}{clay axis maximum}
 }
 \value{
 list containing one plot for each peiid
