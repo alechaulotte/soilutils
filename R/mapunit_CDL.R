@@ -78,12 +78,15 @@ county_subset <- function(county, mapunit, land_use, year1, year2) {
   # coordinate transformations
 ###  cdl_1_sf_t <- st_transform(cdl_1_sf, crs=st_crs(ms))
 ###  cdl_2_sf_t <- st_transform(cdl_2_sf, crs=st_crs(ms))
-  ms_t <- st_transform(ms, crs = st_crs(cdl_1_sf))
+  ms <- st_transform(ms, crs = st_crs(cdl_1_sf))
+
+  ms <- ms %>%
+    filter(mukey %in% m$mukey)
 
   sf_use_s2(FALSE)
 
-  ms1 <- st_intersection(ms_t, cdl_1_sf)
-  ms2 <- st_intersection(ms_t, cdl_2_sf)
+  ms1 <- st_intersection(ms, cdl_1_sf)
+  ms2 <- st_intersection(ms, cdl_2_sf)
 
   ms_ms <- st_intersection(ms1, ms2)
   ms_mukey <- unique(ms_ms$mukey)
