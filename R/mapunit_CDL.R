@@ -70,7 +70,7 @@ county_subset <- function(county, mapunit, land_use, year1, year2) {
   coi_t <- st_transform(coi, crs = st_crs(cdl_1_sf))
 
   # fetch mapunit keys and geometries
-  q <- paste("SELECT mukey FROM mapunit WHERE muname LIKE '", "%Egan%", "'", sep = "", collapse = "")
+  q <- paste("SELECT mukey FROM mapunit WHERE muname LIKE '", "%", mapunit, "%", "'", sep = "", collapse = "")
   m <-SDA_query(q)
 
   ms <- SDA_spatialQuery(coi_t, "mupolygon")
