@@ -27,6 +27,7 @@ mapunit_CDL <- function(state, county, mapunit, land_use, year, duration) {
   require(CropScapeR)
   require(terra)
   require(tidycensus)
+  require(httr)
   timeout(600)
 
   data(county_laea)
