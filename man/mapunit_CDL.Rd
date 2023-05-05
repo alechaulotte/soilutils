@@ -2,10 +2,9 @@
 % Please edit documentation in R/mapunit_CDL.R
 \name{mapunit_CDL}
 \alias{mapunit_CDL}
-\alias{county_subset}
 \title{Intersect mapunit geometry with CDL}
 \usage{
-county_subset(county, mapunit, land_use, year1, year2)
+mapunit_CDL(county, mapunit, land_use, year1, year2)
 }
 \arguments{
 \item{county}{county of interest}

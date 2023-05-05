@@ -2,5 +2,5 @@
 
 export(contrast_tex)
 export(county_subset)
-export(plot_clay)
 export(mapunit_CDL)
+export(plot_clay)

@@ -11,7 +11,7 @@
 #' @return shapefile of intersected geometries
 #' @export
 
-county_subset <- function(county, mapunit, land_use, year1, year2) {
+mapunit_CDL <- function(county, mapunit, land_use, year1, year2) {
 
   require(aqp)
   require(soilDB)

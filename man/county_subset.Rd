@@ -4,7 +4,7 @@
 \alias{county_subset}
 \title{Subset pedons by county symbol}
 \usage{
-county_subset(county, mapunit, land_use, year1, year2)
+county_subset(pedons)
 }
 \arguments{
 \item{pedons}{Soil Profile Collection (pedons) for analysis}
