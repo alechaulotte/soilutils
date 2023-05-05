@@ -4,9 +4,11 @@
 \alias{mapunit_CDL}
 \title{Intersect mapunit geometry with CDL}
 \usage{
-mapunit_CDL(county, mapunit, land_use, year, duration)
+mapunit_CDL(state, county, mapunit, land_use, year, duration)
 }
 \arguments{
+\item{state}{state of interest}
+
 \item{county}{county of interest}
 
 \item{mapunit}{mapunit of interest}
@@ -16,8 +18,6 @@ mapunit_CDL(county, mapunit, land_use, year, duration)
 \item{year}{year of interest}
 
 \item{duration}{desired duration of cover}
-
-\item{state}{state of interest}
 }
 \value{
 shapefile of intersected geometries
