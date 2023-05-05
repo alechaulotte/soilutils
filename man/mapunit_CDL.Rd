@@ -2,26 +2,37 @@
 % Please edit documentation in R/mapunit_CDL.R
 \name{mapunit_CDL}
 \alias{mapunit_CDL}
-\title{Intersect mapunit geometry with CDL}
+\title{Intersect mapunit geometry with CDL land-cover}
 \usage{
-mapunit_CDL(state, county, mapunit, land_use, year, duration)
+mapunit_CDL(state, county, component, land_use, year, duration)
 }
 \arguments{
 \item{state}{state of interest}
 
 \item{county}{county of interest}
 
-\item{mapunit}{mapunit of interest}
+\item{component}{component of interest (use SQL-format wildcards to search muname)}
 
-\item{land_use}{land use code (examples)}
+\item{land_use}{land use code}
 
 \item{year}{year of interest}
 
 \item{duration}{desired duration of cover}
 }
 \value{
-shapefile of intersected geometries
+shapefile of intersected geometries (outputs within working directory)
 }
 \description{
-Intersect mapunit geometry with CDL
+Intersect mapunit geometry with CDL land-cover
+}
+\examples{
+state <- "NE"
+county <- "Stanton"
+# search for any mapunits containing "Thurman" anywhere in their name
+mapunit <- "\%Thurman\%"
+# 176 = grassland/pasture land-use code
+# metadata for CDL layer at: https://www.nass.usda.gov/Research_and_Science/Cropland/metadata/meta.php
+land_use <- 176
+year <- 2022
+duration <- 10
 }

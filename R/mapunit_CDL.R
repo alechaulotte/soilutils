@@ -1,17 +1,27 @@
-#' Intersect mapunit geometry with CDL
+#' Intersect mapunit geometry with CDL land-cover
 #'
 #' @name mapunit_CDL
 #'
 #' @param state state of interest
 #' @param county county of interest
-#' @param mapunit mapunit of interest
-#' @param land_use land use code (examples)
+#' @param component component of interest (use SQL-format wildcards to search muname)
+#' @param land_use land use code
 #' @param year year of interest
 #' @param duration desired duration of cover
-#' @return shapefile of intersected geometries
+#' @examples
+#' state <- "NE"
+#' county <- "Stanton"
+#' # search for any mapunits containing "Thurman" anywhere in their name
+#' mapunit <- "%Thurman%"
+#' # 176 = grassland/pasture land-use code
+#' # metadata for CDL layer at: https://www.nass.usda.gov/Research_and_Science/Cropland/metadata/meta.php
+#' land_use <- 176
+#' year <- 2022
+#' duration <- 10
+#' @return shapefile of intersected geometries (outputs within working directory)
 #' @export
 
-mapunit_CDL <- function(state, county, mapunit, land_use, year, duration) {
+mapunit_CDL <- function(state, county, component, land_use, year, duration) {
 
   require(aqp)
   require(soilDB)
@@ -71,7 +81,7 @@ mapunit_CDL <- function(state, county, mapunit, land_use, year, duration) {
   coi_t <- st_transform(coi, crs = st_crs(cdl_1_sf))
 
   # fetch mapunit keys and geometries
-  q <- paste("SELECT mukey FROM mapunit WHERE muname LIKE '", "%", mapunit, "%", "'", sep = "", collapse = "")
+  q <- paste("SELECT mukey FROM mapunit WHERE muname LIKE '", component, "'", sep = "", collapse = "")
   m <-SDA_query(q)
 
   ms <- SDA_spatialQuery(coi_t, "mupolygon")
