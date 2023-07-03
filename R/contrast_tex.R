@@ -40,9 +40,10 @@ contrast_tex <- function(pedons, tex1, tex2, tex1name = "tex1", tex2name = "tex2
 
   out_list <- data.frame(status=character())
 
+
   for(i in df_list) {
     if(!(get(as.character(i))[1,]$texcl %in% tex1) & !(get(as.character(i))[1,]$texcl %in% tex2)) {
-      out_list <- rbind(out_list, paste("surface texture not in", tex1name, "or", tex2name, sep = " ")) }
+      out_list <- rbind(out_list, paste("surface texture neither", tex1name, "nor", tex2name, sep = " ")) }
     else if (get(as.character(i))[1,]$texcl %in% tex2) {
       out_list <- rbind(out_list, paste(tex2name, "at surface", sep = " ")) }
     else if (get(as.character(i))[1,]$texcl %in% tex1) {
@@ -67,7 +68,7 @@ contrast_tex <- function(pedons, tex1, tex2, tex1name = "tex1", tex2name = "tex2
                                           out_list <- rbind(out_list, paste(tex1name, "through h10", sep = " "))
                                         }
                                         else if (get(as.character(i))[10,]$texcl %in% tex2) {
-                                          out_list<- rbind(out_list, paste(tex1name, "->", tex2name, "at h10", sep = " "))
+                                          out_list<- rbind(out_list, paste(tex1name, " -> ", tex2name, " at h10; ", "depth = (", get(as.character(i))[10,]$hzdept, "cm)", sep = ""))
                                         }
                                         else {
                                           out_list <- rbind(out_list, ("other texture at h10"))
@@ -77,7 +78,7 @@ contrast_tex <- function(pedons, tex1, tex2, tex1name = "tex1", tex2name = "tex2
                                       }
                                     }
                                     else if (get(as.character(i))[9,]$texcl %in% tex2) {
-                                      out_list <- rbind(out_list, paste(tex1name, "->", tex2name, "at h9", sep = " "))
+                                      out_list <- rbind(out_list, paste(tex1name, " -> ", tex2name, " at h9; ", "depth = (", get(as.character(i))[9,]$hzdept, "cm)", sep = ""))
                                     }
                                     else {
                                       out_list <- rbind(out_list, ("other texture at h9"))
@@ -88,7 +89,7 @@ contrast_tex <- function(pedons, tex1, tex2, tex1name = "tex1", tex2name = "tex2
                                   }
                                 }
                                 else if (get(as.character(i))[8,]$texcl %in% tex2) {
-                                  out_list <- rbind(out_list, paste(tex1name, "->", tex2name, "at h8", sep = " "))
+                                  out_list <- rbind(out_list, paste(tex1name, " -> ", tex2name, " at h8; ", "depth = (", get(as.character(i))[8,]$hzdept, "cm)", sep = ""))
                                 }
                                 else {
                                   out_list <- rbind(out_list, ("other texture at h8"))
@@ -99,7 +100,7 @@ contrast_tex <- function(pedons, tex1, tex2, tex1name = "tex1", tex2name = "tex2
                               }
                             }
                             else if (get(as.character(i))[7,]$texcl %in% tex2) {
-                              out_list <- rbind(out_list, paste(tex1name, "->", tex2name, "at h7", sep = " "))
+                              out_list <- rbind(out_list, paste(tex1name, " -> ", tex2name, " at h7; ", "depth = (", get(as.character(i))[7,]$hzdept, "cm)", sep = ""))
                             }
                             else {
                               out_list <- rbind(out_list, ("other texture at h7"))
@@ -110,7 +111,7 @@ contrast_tex <- function(pedons, tex1, tex2, tex1name = "tex1", tex2name = "tex2
                           }
                         }
                         else if (get(as.character(i))[6,]$texcl %in% tex2) {
-                          out_list <- rbind(out_list, paste(tex1name, "->", tex2name, "at h6", sep = " "))
+                          out_list <- rbind(out_list, paste(tex1name, " -> ", tex2name, " at h6; ", "depth = (", get(as.character(i))[6,]$hzdept, "cm)", sep = ""))
                         }
                         else {
                           out_list <- rbind(out_list, ("other texture at h6"))
@@ -121,7 +122,7 @@ contrast_tex <- function(pedons, tex1, tex2, tex1name = "tex1", tex2name = "tex2
                       }
                     }
                     else if (get(as.character(i))[5,]$texcl %in% tex2) {
-                      out_list <- rbind(out_list, paste(tex1name, "->", tex2name, "at h5", sep = " "))
+                      out_list <- rbind(out_list, paste(tex1name, " -> ", tex2name, " at h5; ", "depth = (", get(as.character(i))[5,]$hzdept, "cm)", sep = ""))
                     }
                     else {
                       out_list <- rbind(out_list, ("other texture at h5"))
@@ -132,7 +133,7 @@ contrast_tex <- function(pedons, tex1, tex2, tex1name = "tex1", tex2name = "tex2
                   }
                 }
                 else if (get(as.character(i))[4,]$texcl %in% tex2) {
-                  out_list <- rbind(out_list, paste(tex1name, "->", tex2name, "at h4", sep = " "))
+                  out_list <- rbind(out_list, paste(tex1name, " -> ", tex2name, " at h4; ", "depth = (", get(as.character(i))[4,]$hzdept, "cm)", sep = ""))
                 }
                 else {
                   out_list <- rbind(out_list, ("other texture at h4"))
@@ -143,7 +144,7 @@ contrast_tex <- function(pedons, tex1, tex2, tex1name = "tex1", tex2name = "tex2
               }
             }
             else if (get(as.character(i))[3,]$texcl %in% tex2) {
-              out_list <- rbind(out_list, paste(tex1name, "->", tex2name, "at h3", sep = " "))
+              out_list <- rbind(out_list, paste(tex1name, " -> ", tex2name, " at h3; ", "depth = (", get(as.character(i))[3,]$hzdept, "cm)", sep = ""))
             }
             else {
               out_list <- rbind(out_list, ("other texture at h3"))
@@ -154,7 +155,7 @@ contrast_tex <- function(pedons, tex1, tex2, tex1name = "tex1", tex2name = "tex2
           }
         }
         else if (get(as.character(i))[2,]$texcl %in% tex2) {
-          out_list <- rbind(out_list, paste(tex1name, "->", tex2name, "at h2", sep = " "))
+          out_list <- rbind(out_list, paste(tex1name, " -> ", tex2name, " at h2; ", "depth = (", get(as.character(i))[2,]$hzdept, "cm)", sep = ""))
         }
         else {
           out_list <- rbind(out_list, ("other texture at h2"))
